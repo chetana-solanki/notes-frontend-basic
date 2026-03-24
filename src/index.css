@@ -1,13 +1,261 @@
+/* ============================================
+   iNotebook — Dark Theme
+   ============================================ */
+
+/* 1. CSS Variables */
+:root {
+  --bg:          #0d1117;
+  --bg-surface:  #161b22;
+  --bg-card:     #1c2128;
+  --bg-input:    #10151c;
+  --border:      rgba(255, 255, 255, 0.09);
+  --accent:      #7c3aed;
+  --accent-hover:#6d28d9;
+  --accent-dim:  rgba(124, 58, 237, 0.15);
+  --accent-light:#a78bfa;
+  --text:        #e6edf3;
+  --text-muted:  #8b949e;
+  --danger:      #f85149;
+  --radius:      0.65rem;
+  --t:           0.2s ease;
+}
+
+/* 2. Base */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* 3. Navbar */
+.dark-navbar {
+  background: rgba(13, 17, 23, 0.95) !important;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.dark-navbar .navbar-brand {
+  color: var(--text) !important;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  font-size: 1.2rem;
+}
+.dark-navbar .nav-link {
+  color: var(--text-muted) !important;
+  transition: color var(--t);
+  font-weight: 500;
+}
+.dark-navbar .nav-link:hover,
+.dark-navbar .nav-link.active {
+  color: var(--text) !important;
+}
+.dark-navbar .btn-outline-light {
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+  font-weight: 500;
+}
+.dark-navbar .btn-outline-light:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--text) !important;
+}
+.dark-navbar .btn-accent {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+.dark-navbar .btn-accent:hover {
+  background-color: var(--accent-hover);
+  color: #fff;
+}
+
+/* 4. Cards */
+.card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: var(--radius) !important;
+}
+.card-title { color: var(--text) !important; }
+.card-text  { color: var(--text-muted) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* 5. Form Controls */
+.form-control,
+.form-select {
+  background-color: var(--bg-input) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 0.5rem !important;
+  transition: border-color var(--t), box-shadow var(--t) !important;
+}
+.form-control::placeholder { color: var(--text-muted) !important; opacity: 1; }
+.form-control:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-dim) !important;
+  outline: none !important;
+  background-color: var(--bg-input) !important;
+  color: var(--text) !important;
+}
+.form-label {
+  color: var(--text) !important;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+/* 6. Buttons */
+.btn-primary {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+.btn-primary:disabled {
+  opacity: 0.45 !important;
+}
+.btn-outline-primary {
+  color: var(--accent-light) !important;
+  border-color: var(--accent) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--accent) !important;
+  color: #fff !important;
+}
+.btn-outline-danger {
+  color: var(--danger) !important;
+  border-color: var(--danger) !important;
+}
+.btn-outline-danger:hover {
+  background-color: var(--danger) !important;
+  color: #fff !important;
+}
+.btn-secondary {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+.btn-secondary:hover {
+  background-color: #21262d !important;
+  color: var(--text) !important;
+}
+
+/* 7. Note Cards — hover lift */
+.note-card {
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.note-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 8. Auth Card — accent top stripe */
+.auth-card {
+  border-top: 3px solid var(--accent) !important;
+}
+.auth-card .card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* 9. Modal */
+.modal-content {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: var(--radius) !important;
+}
+.modal-header {
+  border-bottom: 1px solid var(--border) !important;
+}
+.modal-footer {
+  border-top: 1px solid var(--border) !important;
+}
+.btn-close {
+  filter: invert(1) grayscale(1) !important;
+  opacity: 0.6 !important;
+}
+.btn-close:hover { opacity: 1 !important; }
+
+/* 10. Badges */
+.badge.bg-secondary {
+  background-color: var(--accent-dim) !important;
+  color: var(--accent-light) !important;
+  font-weight: 500;
+}
+.badge.bg-primary {
+  background-color: var(--accent) !important;
+}
+
+/* 11. Empty state */
+.empty-state {
+  background-color: var(--bg-surface) !important;
+  border: 1px dashed var(--border) !important;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+}
+
+/* 12. Feature icon circles (About page) */
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.6rem;
+}
+
+/* 13. Alert strip */
+.alert {
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+/* 14. Sticky sidebar (Add Note panel) */
+.sticky-sidebar {
+  position: sticky;
+  top: 76px; /* navbar ~56px + 20px breathing room */
+}
+
+/* 15. Add Note card — accent left border */
+.add-note-card {
+  border-left: 3px solid var(--accent) !important;
+  background: linear-gradient(135deg, var(--bg-card) 0%, #1e1d2e 100%) !important;
+}
+
+/* 16. Add Note header icon circle */
+.add-note-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* 17. Textarea inherits dark styles */
+textarea.form-control {
+  resize: vertical;
+  min-height: 90px;
 }
