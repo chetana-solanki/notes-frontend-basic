@@ -81,8 +81,13 @@ const NoteState = (props) => {
     setNotes(newNotes);
   }
 
+  // Clear all notes (on logout)
+  const clearNotes = () => {
+    setNotes([])
+  }
+
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, clearNotes }}>
       {props.children}
     </NoteContext.Provider>
   )

@@ -13,7 +13,7 @@ const Notes = (props) => {
             getNotes()
         } else {
             props.showAlert("Please login to continue", "danger");
-            navigate("/");
+            navigate("/login");
         }
         // eslint-disable-next-line
     }, [])
