@@ -4,18 +4,18 @@
 
 /* 1. CSS Variables */
 :root {
-  --bg:          #0d1117;
-  --bg-surface:  #161b22;
-  --bg-card:     #1c2128;
-  --bg-input:    #10151c;
-  --border:      rgba(255, 255, 255, 0.09);
+  --bg:          #f5f3ff;
+  --bg-surface:  #ede9fe;
+  --bg-card:     #ffffff;
+  --bg-input:    #f9fafb;
+  --border:      rgba(109, 40, 217, 0.15);
   --accent:      #7c3aed;
   --accent-hover:#6d28d9;
-  --accent-dim:  rgba(124, 58, 237, 0.15);
-  --accent-light:#a78bfa;
-  --text:        #e6edf3;
-  --text-muted:  #8b949e;
-  --danger:      #f85149;
+  --accent-dim:  rgba(124, 58, 237, 0.10);
+  --accent-light:#6d28d9;
+  --text:        #1e1b4b;
+  --text-muted:  #6b7280;
+  --danger:      #dc2626;
   --radius:      0.65rem;
   --t:           0.2s ease;
 }
@@ -36,9 +36,10 @@ code {
 
 /* 3. Navbar */
 .dark-navbar {
-  background: rgba(13, 17, 23, 0.95) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(10px);
+  box-shadow: 0 1px 16px rgba(109, 40, 217, 0.08);
 }
 .dark-navbar .navbar-brand {
   color: var(--text) !important;
@@ -53,7 +54,7 @@ code {
 }
 .dark-navbar .nav-link:hover,
 .dark-navbar .nav-link.active {
-  color: var(--text) !important;
+  color: var(--accent) !important;
 }
 .dark-navbar .btn-outline-light {
   border-color: var(--border) !important;
@@ -62,7 +63,7 @@ code {
 }
 .dark-navbar .btn-outline-light:hover {
   background-color: var(--bg-surface) !important;
-  color: var(--text) !important;
+  color: var(--accent) !important;
 }
 .dark-navbar .btn-accent {
   background-color: var(--accent);
@@ -73,6 +74,33 @@ code {
 .dark-navbar .btn-accent:hover {
   background-color: var(--accent-hover);
   color: #fff;
+}
+
+/* Navbar user avatar circle */
+.navbar-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+}
+
+/* Navbar username text */
+.navbar-username {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* 4. Cards */
@@ -145,8 +173,8 @@ code {
   color: var(--text) !important;
 }
 .btn-secondary:hover {
-  background-color: #21262d !important;
-  color: var(--text) !important;
+  background-color: var(--accent-dim) !important;
+  color: var(--accent) !important;
 }
 
 /* 7. Note Cards — hover lift */
@@ -156,7 +184,7 @@ code {
 .note-card:hover {
   transform: translateY(-4px);
   border-color: var(--accent) !important;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.18) !important;
 }
 
 /* 8. Auth Card — accent top stripe */
@@ -183,8 +211,8 @@ code {
   border-top: 1px solid var(--border) !important;
 }
 .btn-close {
-  filter: invert(1) grayscale(1) !important;
-  opacity: 0.6 !important;
+  filter: none !important;
+  opacity: 0.5 !important;
 }
 .btn-close:hover { opacity: 1 !important; }
 
@@ -237,7 +265,7 @@ code {
 /* 15. Add Note card — accent left border */
 .add-note-card {
   border-left: 3px solid var(--accent) !important;
-  background: linear-gradient(135deg, var(--bg-card) 0%, #1e1d2e 100%) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%) !important;
 }
 
 /* 16. Add Note header icon circle */
@@ -258,4 +286,298 @@ code {
 textarea.form-control {
   resize: vertical;
   min-height: 90px;
+}
+
+/* ============================================
+   19. Login Page — full-viewport gradient + white card
+   ============================================ */
+
+/* Full-viewport wrapper — covers the dark body */
+.login-page {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #312e81 0%, #4f46e5 30%, #7c3aed 65%, #c026d3 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative blurred circles in the background */
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -80px;
+  width: 340px;
+  height: 340px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.login-page::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -70px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* White card — overrides the global dark card */
+.login-card {
+  background: #ffffff !important;
+  border: none !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35) !important;
+  width: 100%;
+  max-width: 420px;
+  color: #1e1b4b !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Gradient logo icon */
+.login-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin: 0 auto 1.1rem;
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.45);
+}
+
+/* Typography inside white card */
+.login-card .card-title {
+  color: #1e1b4b !important;
+  font-size: 1.65rem !important;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.login-card .login-subtitle {
+  color: #6b7280;
+  font-size: 0.92rem;
+}
+.login-card .form-label {
+  color: #374151 !important;
+  font-weight: 600;
+  font-size: 0.84rem;
+  margin-bottom: 0.35rem;
+}
+
+/* Light inputs — overrides global dark form-control */
+.login-card .form-control {
+  background-color: #f9fafb !important;
+  border: 1.5px solid #e5e7eb !important;
+  color: #111827 !important;
+  border-radius: 0.625rem !important;
+  padding: 0.6rem 0.875rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+.login-card .form-control::placeholder {
+  color: #9ca3af !important;
+}
+.login-card .form-control:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* Gradient submit button */
+.btn-login {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed) !important;
+  border: none !important;
+  border-radius: 0.625rem !important;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.65rem;
+  letter-spacing: 0.02em;
+  color: #fff !important;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease !important;
+}
+.btn-login:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 22px rgba(124, 58, 237, 0.5) !important;
+}
+
+/* "or" divider */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #d1d5db;
+  font-size: 0.8rem;
+  margin: 1.1rem 0;
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+/* Bottom sign-up prompt */
+.login-footer-text {
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-top: 1.1rem;
+  margin-bottom: 0;
+}
+.login-footer-text a {
+  color: #7c3aed;
+  font-weight: 700;
+  text-decoration: none;
+}
+.login-footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   18. Profile Page */
+
+/* Hero card — gradient banner strip at the top */
+.profile-hero-card {
+  border-top: none !important;
+  overflow: hidden;
+}
+.profile-banner {
+  height: 96px;
+  background: linear-gradient(135deg, #4f1fb5 0%, #7c3aed 50%, #a855f7 100%);
+  position: relative;
+}
+.profile-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+
+/* Avatar sits half-over the banner */
+.profile-avatar-wrap {
+  margin-top: -40px;
+  position: relative;
+  z-index: 1;
+}
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border: 3px solid var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto;
+  box-shadow: 0 0 0 3px var(--accent), 0 8px 24px rgba(124, 58, 237, 0.4);
+}
+
+/* Role badge — admin gets a special gradient */
+.role-badge-admin {
+  background: linear-gradient(90deg, #f85149, #c0392b) !important;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.role-badge-user {
+  background: var(--accent-dim) !important;
+  color: var(--accent-light) !important;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* Stat chip row */
+.profile-stat-chip {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.profile-stat-chip strong {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+/* Section header row inside cards */
+.profile-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+.profile-section-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.profile-section-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text) !important;
+  margin: 0;
+}
+
+/* Danger zone card */
+.profile-danger-card {
+  border: 1px solid rgba(248, 81, 73, 0.35) !important;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(248, 81, 73, 0.05) 100%) !important;
+}
+.profile-danger-card .profile-section-icon {
+  background: rgba(248, 81, 73, 0.12);
+  border-color: rgba(248, 81, 73, 0.3);
+}
+.btn-danger-outline-custom {
+  color: var(--danger) !important;
+  border: 1px solid rgba(248, 81, 73, 0.45) !important;
+  background: transparent !important;
+  font-weight: 600;
+  transition: background var(--t), border-color var(--t), color var(--t);
+}
+.btn-danger-outline-custom:hover {
+  background: var(--danger) !important;
+  border-color: var(--danger) !important;
+  color: #fff !important;
+}
+
+/* Save button gradient override */
+.btn-profile-save {
+  background: linear-gradient(90deg, #7c3aed, #a855f7) !important;
+  border: none !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: opacity var(--t), box-shadow var(--t) !important;
+}
+.btn-profile-save:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.45) !important;
 }
