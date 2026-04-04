@@ -18,35 +18,31 @@ const AddNote = (props) => {
         setNote({...note, [e.target.name]: e.target.value})
     }
     return (
-        <div className="card add-note-card">
-            <div className="card-body p-4">
-                <div className="d-flex align-items-center gap-2 mb-4">
-                    <div className="add-note-icon">✏️</div>
-                    <div>
-                        <h5 className="card-title mb-0 fw-bold">Add a Note</h5>
-                        <small className="text-muted">Fill in the details below</small>
-                    </div>
+        <div className="bg-gradient-to-br from-bg-card to-bg-surface border border-border/50 rounded-radius shadow-xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+                <div className="text-3xl animate-bounce">✏️</div>
+                <div>
+                    <h5 className="font-bold text-xl text-accent mb-0">Add a Note</h5>
+                    <small className="text-text-muted">Fill in the details below</small>
                 </div>
-                <form>
-                    <div className="mb-3">
-                        <label htmlFor="title" className="form-label">Title</label>
-                        <input type="text" className="form-control" id="title" name="title" value={note.title} onChange={onChange} minLength={5} required placeholder="Give your note a title..." />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="description" className="form-label">Description</label>
-                        <textarea className="form-control" id="description" name="description" value={note.description} onChange={onChange} minLength={5} required rows={4} placeholder="Write your note here..." />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="tag" className="form-label">Tag <span className="text-muted fw-normal">(optional)</span></label>
-                        <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange} placeholder="e.g. work, personal, ideas..." />
-                    </div>
-                    <div className="d-grid">
-                        <button disabled={note.title.length < 5 || note.description.length < 5} type="submit" className="btn btn-primary py-2" onClick={handleClick}>
-                            + Add Note
-                        </button>
-                    </div>
-                </form>
             </div>
+            <form>
+                <div className="mb-4">
+                    <label htmlFor="title" className="block text-text font-semibold text-sm mb-2">Title</label>
+                    <input type="text" className="w-full px-4 py-3 bg-bg-input border-2 border-border/30 rounded-xl text-text focus:border-secondary focus:ring-4 focus:ring-secondary/20 outline-none transition-all duration-200" id="title" name="title" value={note.title} onChange={onChange} minLength={5} required placeholder="Give your note a title..." />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="description" className="block text-text font-semibold text-sm mb-2">Description</label>
+                    <textarea className="w-full px-4 py-3 bg-bg-input border-2 border-border/30 rounded-xl text-text focus:border-secondary focus:ring-4 focus:ring-secondary/20 outline-none transition-all duration-200 resize-none" id="description" name="description" value={note.description} onChange={onChange} minLength={5} required rows={4} placeholder="Write your note here..." />
+                </div>
+                <div className="mb-6">
+                    <label htmlFor="tag" className="block text-text font-semibold text-sm mb-2">Tag <span className="text-text-muted font-normal">(optional)</span></label>
+                    <input type="text" className="w-full px-4 py-3 bg-bg-input border-2 border-border/30 rounded-xl text-text focus:border-secondary focus:ring-4 focus:ring-secondary/20 outline-none transition-all duration-200" id="tag" name="tag" value={note.tag} onChange={onChange} placeholder="e.g. work, personal, ideas..." />
+                </div>
+                <button disabled={note.title.length < 5 || note.description.length < 5} type="submit" className="w-full bg-gradient-to-r from-accent to-pink text-white py-3 rounded-xl hover:from-accent-hover hover:to-pink-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={handleClick}>
+                    + Add Note
+                </button>
+            </form>
         </div>
     )
 }

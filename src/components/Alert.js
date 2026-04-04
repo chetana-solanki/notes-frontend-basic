@@ -9,8 +9,8 @@ export const Alert = (props) => {
     return (
         <div style={{ minHeight: '52px' }}>
             {props.alert &&
-                <div className={`alert alert-${props.alert.type} shadow-sm mb-0 py-2`} role="alert">
-                    <strong>{capitalize(props.alert.type)}: </strong> {props.alert.msg}
+                <div className={`px-6 py-4 rounded-xl shadow-lg mb-0 ${props.alert.type === 'success' ? 'bg-gradient-to-r from-success to-emerald-400 text-white border border-success/50' : 'bg-gradient-to-r from-danger to-red-400 text-white border border-danger/50'} animate-pulse`} role="alert">
+                    <strong className="text-lg">{capitalize(props.alert.type)}: </strong> {props.alert.msg}
                 </div>
             }
         </div>
